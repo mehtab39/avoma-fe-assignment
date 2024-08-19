@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-function withQuery(WrappedComponent) {
+function withQuery(WrappedComponent, dataKey = 'data') {
     return function QueryComponent(props) {
         const { data, isLoading, error } = useQuery(props.queryOptions);
 
@@ -21,7 +21,7 @@ function withQuery(WrappedComponent) {
             );
         }
 
-        return <WrappedComponent data={data} {...props} />;
+        return <WrappedComponent {...props} {...{ [dataKey]: data }} />;
     };
 }
 

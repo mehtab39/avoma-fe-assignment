@@ -7,7 +7,7 @@ const EmptyArray = Object.freeze([]);
 
 
 
-function PostsList({data: posts}){
+function PostsList({posts}){
     const [searchTerm, setSearchTerm] = useState('');
 
     const updateSearchTerm = (e) => {
@@ -46,7 +46,7 @@ function PostsList({data: posts}){
     )
 }
 
-const PostsWithQuery = withQuery(PostsList);
+const PostsWithQuery = withQuery(PostsList, 'posts');
 
 function Posts() {
     return <PostsWithQuery queryOptions={{ queryKey: ['posts'], queryFn: getPosts }} />

@@ -1,9 +1,14 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Todo
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# avoma-fe-assignment
+- Move files to TSX
+- Use Absolute import
+- Post details UI
+- Write a proper readme on setup steps and design decisions
+- Back button to go back to posts.
+- Refactor if needed
+- optimise List, rerenders if needed
+- Verify: Ensure we don’t refetch data if we already have it.
+- Deploy to either Vercel 
+- Put it on git & open source it.
