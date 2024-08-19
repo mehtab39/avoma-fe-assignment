@@ -1,45 +1,13 @@
-import { useQuery, } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getPosts } from '../api/posts';
+import withQuery from '../hoc/withQuery';
 
-const getPosts = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-    return response.json();
-}
-
-function Posts() {
-    const { data, isLoading, error } = useQuery({ queryKey: ['posts'], queryFn: getPosts });
-
-    if (isLoading) {
-        return (
-            <div className="flex justify-center items-center h-screen bg-gray-100">
-                <h1 className="text-lg text-gray-600">Loading...</h1>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className="flex justify-center items-center h-screen bg-gray-100">
-                <h1 className="text-lg text-red-500">Something went terribly wrong</h1>
-            </div>
-        );
-    }
-
-    if (!data || data.length === 0){
-        return (
-            <div className="flex justify-center items-center h-screen bg-gray-100">
-                <h1 className="text-lg text-red-600">Posts Unavailable</h1>
-            </div>
-        );
-    }
-
-    return <PostsPresentation posts={data} />
-
-}
+const EmptyArray = Object.freeze([]);
 
 
-function PostsPresentation({posts}){
+
+function PostsList({data: posts}){
     const [searchTerm, setSearchTerm] = useState('');
 
     const updateSearchTerm = (e) => {
@@ -48,10 +16,11 @@ function PostsPresentation({posts}){
 
     const filteredPosts = useMemo(() => {
         if (!searchTerm) return posts;
+        if (!posts) return EmptyArray;
         return posts.filter(({ title , body}) => {
             return title.toLowerCase().includes(searchTerm) || body.toLowerCase().includes(searchTerm)
         })
-    }, [searchTerm])
+    }, [searchTerm, posts]);
 
     return (
         <div className="max-w-4xl mx-auto mt-10">
@@ -76,5 +45,12 @@ function PostsPresentation({posts}){
         </div>
     )
 }
+
+const PostsWithQuery = withQuery(PostsList);
+
+function Posts() {
+    return <PostsWithQuery queryOptions={{ queryKey: ['posts'], queryFn: getPosts }} />
+}
+
 
 export default Posts;
