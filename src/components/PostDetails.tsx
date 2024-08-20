@@ -1,8 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { getComments, getPostDetails } from '../api/posts';
-import withQuery from '../hoc/withQuery';
+import { getComments, getPostDetails } from '@/api/posts';
+import withQuery from '@/hoc/withQuery';
 import { useEffect } from 'react';
-import { Query } from '../constants';
+import { Query } from '@/constants';
+import { Comment, Post } from '@/api/types';
+
+interface ICommentsList {
+    comments: Comment[]
+}
+interface IPostDescription {
+    post: Post
+}
 
 function PostDetails() {
     const { id: postId } = useParams();
@@ -27,17 +35,17 @@ function PostDetails() {
             </button>
             <PostDescription queryOptions={{
                 queryKey: [Query.POST, postId],
-                queryFn: () => getPostDetails(postId)
+                queryFn: () => getPostDetails(postId!)
             }} />
             <PostComments queryOptions={{
                 queryKey: [Query.COMMENTS, postId],
-                queryFn: () => getComments(postId)
+                queryFn: () => getComments(postId!)
             }} />
         </div>
     );
 }
 
-const CommentsList = ({ comments }) => {
+const CommentsList = ({ comments }: ICommentsList) => {
     return (
         <>
             <h2 className="text-2xl font-bold text-gray-800 mb-4">Comments</h2>
@@ -53,7 +61,8 @@ const CommentsList = ({ comments }) => {
     );
 }
 
-const Description = ({ post }) => {
+
+const Description = ({ post }: IPostDescription) => {
     return (<>
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">{post.title}</h1>
         <p className="text-gray-700 mb-8">{post.body}</p>

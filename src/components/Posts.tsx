@@ -1,15 +1,20 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getPosts } from '../api/posts';
-import withQuery from '../hoc/withQuery';
+import { getPosts } from '@/api/posts';
+import withQuery from '@/hoc/withQuery';
 import { FixedSizeList as List } from 'react-window';
-import { Query } from '../constants';
+import { Query } from '@/constants';
+import { Post } from '@/api/types';
+
 const EmptyArray = Object.freeze([]);
 
-function PostsList({ posts }) {
+interface IPostList{
+    posts: Post[]
+}
+function PostsList({ posts }: IPostList) {
     const [searchTerm, setSearchTerm] = useState('');
 
-    const updateSearchTerm = (e) => {
+    const updateSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value.toLowerCase());
     };
 
@@ -19,7 +24,7 @@ function PostsList({ posts }) {
         return posts.filter(({ title, }) => title.toLowerCase().includes(searchTerm));
     }, [searchTerm, posts]);
 
-    const Row = ({ index, style }) => {
+    const Row = ({ index, style }: {index: number, style: React.CSSProperties}) => {
         const post = filteredPosts[index];
         return (
             <div style={style} className="p-4 border-b border-gray-300 bg-white">

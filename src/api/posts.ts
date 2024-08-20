@@ -1,5 +1,5 @@
-import { Post, Comment } from './types';
-import { Query } from "../constants";
+import { Post, Comment } from '@/api/types';
+import { Query } from "@/constants";
 
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 const POST_BASE_URL = `${BASE_URL}/${Query.POSTS}`;
@@ -13,11 +13,11 @@ const fetchResponse = async <T>(endpoint: string): Promise<T> => {
     return response.json();
 }
 
-export const getPostDetails = async (id: number) => {
-    return fetchResponse<Post>(`${POST_BASE_URL}/${id}`);
+export const getPostDetails = async (postId: string) => {
+    return fetchResponse<Post>(`${POST_BASE_URL}/${postId}`);
 };
 
-export const getComments = async (postId: number) => {
+export const getComments = async (postId: string) => {
     return fetchResponse<Comment[]>(`${COMMENTS_BASE_URL}?postId=${postId}`);
 };
 

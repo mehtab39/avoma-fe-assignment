@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import Posts from './components/Posts';
-import PostDetails from './components/PostDetails';
+import Posts from '@/components/Posts';
+import PostDetails from '@/components/PostDetails';
 
 function App() {
   return (
