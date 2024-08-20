@@ -1,10 +1,20 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-
+const MINUTE = 1000 * 60;
+const DEFAULT_QUERY_OPTIONS = {
+    staleTime: 5 * MINUTE,
+    cacheTime: 10 * MINUTE,
+}
 function withQuery(WrappedComponent, dataKey = 'data') {
     return function QueryComponent(props) {
-        const { queryOptions, loadingText, errorText, ...restProps } = props;
-        const { data, isLoading, error } = useQuery(queryOptions);
+        const { 
+            queryOptions,
+            loadingText,
+            errorText,
+            ...restProps } = props;
+        
+
+        const { data, isLoading, error } = useQuery({ ...DEFAULT_QUERY_OPTIONS, ...queryOptions});
 
         if (isLoading) {
             return (
