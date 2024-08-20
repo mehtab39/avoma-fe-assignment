@@ -35,7 +35,7 @@ function PostsList({ posts }: IPostList) {
             </div>
         );
     };
-
+ 
     return (
         <div className="max-w-4xl mx-auto mt-10">
             <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Posts</h1>
@@ -46,7 +46,7 @@ function PostsList({ posts }: IPostList) {
                 onChange={updateSearchTerm}
                 className="w-full p-2 mb-6 border border-gray-300 rounded-lg"
             />
-            <List
+            {filteredPosts.length  ? <List
                 height={600}
                 itemCount={filteredPosts.length}
                 itemSize={120}
@@ -54,7 +54,7 @@ function PostsList({ posts }: IPostList) {
                 className="bg-gray-100 rounded-lg shadow"
             >
                 {Row}
-            </List>
+            </List> : <NoPostAvailable/>}
         </div>
     );
 }
@@ -65,4 +65,12 @@ function Posts() {
     return <PostsWithQuery queryOptions={{ queryKey: [Query.POSTS], queryFn: getPosts }} />;
 }
 
+
+const NoPostAvailable = () => {
+    return (
+        <div className="flex justify-center items-center h-screen bg-gray-100">
+            <h1 className="text-lg text-gray-600">No posts available.</h1>
+        </div>
+    );
+}
 export default Posts;
