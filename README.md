@@ -28,8 +28,8 @@ This application is built with React, Vite, React Router DOM, TailwindCSS, and R
 ### Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone git@github.com:mehtab39/avoma-fe-assignment.git
+cd avoma-fe-assignment
 ```
 
 ### Install Dependencies
