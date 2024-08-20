@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getPosts } from '../api/posts';
 import withQuery from '../hoc/withQuery';
 import { FixedSizeList as List } from 'react-window';
+import { Query } from '../constants';
 const EmptyArray = Object.freeze([]);
 
 function PostsList({ posts }) {
@@ -53,10 +54,10 @@ function PostsList({ posts }) {
     );
 }
 
-const PostsWithQuery = withQuery(PostsList, 'posts');
+const PostsWithQuery = withQuery(PostsList, Query.POSTS);
 
 function Posts() {
-    return <PostsWithQuery queryOptions={{ queryKey: ['posts'], queryFn: getPosts }} />;
+    return <PostsWithQuery queryOptions={{ queryKey: [Query.POSTS], queryFn: getPosts }} />;
 }
 
 export default Posts;

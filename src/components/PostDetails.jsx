@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getComments, getPostDetails } from '../api/posts';
 import withQuery from '../hoc/withQuery';
 import { useEffect } from 'react';
+import { Query } from '../constants';
 
 function PostDetails() {
     const { id: postId } = useParams();
@@ -25,11 +26,11 @@ function PostDetails() {
                 &larr; Back to Posts
             </button>
             <PostDescription queryOptions={{
-                queryKey: ['post', postId],
+                queryKey: [Query.POST, postId],
                 queryFn: () => getPostDetails(postId)
             }} />
             <PostComments queryOptions={{
-                queryKey: ['comments', postId],
+                queryKey: [Query.COMMENTS, postId],
                 queryFn: () => getComments(postId)
             }} />
         </div>
@@ -59,7 +60,7 @@ const Description = ({ post }) => {
     </>)
 }
 
-const PostComments = withQuery(CommentsList, 'comments');
-const PostDescription = withQuery(Description, 'post');
+const PostComments = withQuery(CommentsList, Query.COMMENTS);
+const PostDescription = withQuery(Description, Query.POST);
 
 export default PostDetails;
