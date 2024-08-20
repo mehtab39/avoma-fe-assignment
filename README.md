@@ -56,7 +56,7 @@ npm run build
 
 ## Design Decisions
 
-- **Vite**:Vite provides a fast development experience with its efficient bundling.
+- **Vite**: Vite provides a fast development experience with its efficient bundling.
 - **React Router DOM**: Used for handling routing and navigation within the application.
 - **TailwindCSS**: Used for styling. Tailwind allows rapid and consistent design.
 - **React Query**: For data fetching and caching to manage server state efficiently.
