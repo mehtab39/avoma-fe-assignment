@@ -15,7 +15,7 @@ function withQuery(WrappedComponent, dataKey = 'data') {
         
 
         const { data, isLoading, error } = useQuery({ ...DEFAULT_QUERY_OPTIONS, ...queryOptions});
-
+        
         if (isLoading) {
             return (
                 <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -28,6 +28,14 @@ function withQuery(WrappedComponent, dataKey = 'data') {
             return (
                 <div className="flex justify-center items-center h-screen bg-gray-100">
                     <h1 className="text-lg text-red-500">{errorText || 'Something went terribly wrong'}</h1>
+                </div>
+            );
+        }
+
+        if (!data || (Array.isArray(data) && data.length === 0)) {
+            return (
+                <div className="flex justify-center items-center h-screen bg-gray-100">
+                    <h1 className="text-lg text-gray-600">{`No ${dataKey} available. Try again Later  :(`}</h1>
                 </div>
             );
         }
