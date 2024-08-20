@@ -21,7 +21,6 @@ This application is built with React, Vite, React Router DOM, TailwindCSS, and R
 - **TailwindCSS**
 - **React Query**
 - **TypeScript**
-- **React Window**
 
 ## Setup Instructions
 
@@ -61,6 +60,5 @@ npm run build
 - **TailwindCSS**: Used for styling. Tailwind allows rapid and consistent design.
 - **React Query**: For data fetching and caching to manage server state efficiently.
 - **TypeScript**: Provides type safety and improves code quality.
-- **React Window**: Used for rendering large lists efficiently to improve performance.
 - **withQuery HOC**: Created to abstract data fetching logic, handle loading and error states and remove duplicacy from the codebase.
 

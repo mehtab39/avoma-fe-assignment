@@ -26,7 +26,7 @@ function PostDetails() {
     }, []);
 
     return (
-        <div className="max-w-4xl mx-auto mt-10">
+        <div className="max-w-4xl mx-auto mt-10 px-4 sm:px-6">
             <button
                 onClick={handleBackClick}
                 className="mb-4 text-blue-500 hover:underline"
