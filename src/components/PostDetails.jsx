@@ -1,11 +1,29 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getComments, getPostDetails } from '../api/posts';
 import withQuery from '../hoc/withQuery';
+import { useEffect } from 'react';
 
 function PostDetails() {
     const { id: postId } = useParams();
+
+    const navigate = useNavigate();
+
+    const handleBackClick = () => {
+        navigate('/');
+    };
+
+    useEffect(() => {
+        window.scrollTo(0, 0); 
+    }, []);
+
     return (
         <div className="max-w-4xl mx-auto mt-10">
+            <button
+                onClick={handleBackClick}
+                className="mb-4 text-blue-500 hover:underline"
+            >
+                &larr; Back to Posts
+            </button>
             <PostDescription queryOptions={{
                 queryKey: ['post', postId],
                 queryFn: () => getPostDetails(postId)

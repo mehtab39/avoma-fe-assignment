@@ -1,6 +1,6 @@
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 const POST_BASE_URL = `${BASE_URL}/posts`;
-const COMMENTS_BASE_URL = `${BASE_URL}/posts`;
+const COMMENTS_BASE_URL = `${BASE_URL}/comments`;
 
 const fetchResponse = async (endpoint) => {
     const response = await fetch(endpoint);
